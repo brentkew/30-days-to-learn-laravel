@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('job_listing', function (Blueprint $table) {
             $table->id(); // Primary key
+            $table->foreignIdFor(\App\Models\Employer::class);
             $table->string('title'); // Job title
             $table->string('salary'); // Salary range
             $table->string('location'); // Job location
