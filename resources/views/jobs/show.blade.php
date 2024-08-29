@@ -14,10 +14,15 @@
             <p class="text-gray-600">Type: {{ $job['type'] }}</p>
             <p class="text-gray-600">Posted on: {{ $job['datePosted'] }}</p>
         </div>
-        @else
-        <div class="bg-white p-4 rounded-lg shadow-md">
-            <h1 class="text-2xl font-bold text-gray-800">No matching jobs available</h1>
+
+        <div class="pt-10">
+            <x-button href="/jobs/{{ $job['id'] }}/edit">Edit Job</x-button>
         </div>
+
+        @else
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <h1 class="text-2xl font-bold text-gray-800">No matching jobs available</h1>
+            </div>
     @endif
 
 </x-layout>
