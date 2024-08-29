@@ -17,8 +17,13 @@ Route::get('/contact-us', function() {
 });
 
 Route::get("/jobs", function (){
+
+    // $jobs = Job::with('employer')->paginate(5);
+    $jobs = Job::with('employer')->simplePaginate(5);
+    // $jobs = Job::with('employer')->cursorPaginate(5);
+
     return view("jobs", [
-        'jobs' => Job::all()
+        'jobs' => $jobs
     ]);
 });
 
