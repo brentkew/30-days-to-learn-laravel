@@ -19,12 +19,25 @@ Route::get('/contact-us', function() {
 Route::get("/jobs", function (){
 
     // $jobs = Job::with('employer')->paginate(5);
-    $jobs = Job::with('employer')->simplePaginate(5);
+    $jobs = Job::with('employer')->latest()->simplePaginate(5);
     // $jobs = Job::with('employer')->cursorPaginate(5);
 
-    return view("jobs", [
+    return view("jobs.index", [
         'jobs' => $jobs
     ]);
+});
+
+Route::get("/jobs/create", function(){
+    return view("jobs.create");
+});
+Route::post("/jobs", function(){
+    Job::create([
+        "title"=> request('title'),
+        "salary"=> request('salary'),
+        "employer_id"=> 2,
+    ]);
+
+    return view("/jobs");
 });
 
 Route::get("/jobs/{id}", function($id){
@@ -34,5 +47,5 @@ Route::get("/jobs/{id}", function($id){
         abort(404);
     }
 
-    return view('jobs-details', ['job' => $job]);
+    return view('jobs.show', ['job' => $job]);
 });

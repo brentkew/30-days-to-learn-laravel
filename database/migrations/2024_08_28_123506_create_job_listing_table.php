@@ -16,11 +16,11 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\Employer::class);
             $table->string('title'); // Job title
             $table->string('salary'); // Salary range
-            $table->string('location'); // Job location
-            $table->string('experience'); // Required experience
-            $table->string('company'); // Company name
-            $table->string('type'); // Job type (Full-time, Part-time, etc.)
-            $table->date('date_posted'); // Date when the job was posted
+            $table->string('location')->nullable(true); // Job location
+            $table->string('experience')->nullable(true); // Required experience
+            $table->string('company')->nullable(true); // Company name
+            $table->string('type')->nullable(true); // Job type (Full-time, Part-time, etc.)
+            $table->date('date_posted')->nullable(true); // Date when the job was posted
             $table->timestamps(); // Created and updated timestamps
         });
     }

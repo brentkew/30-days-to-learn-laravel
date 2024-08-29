@@ -14,7 +14,6 @@
                     <span class="text-gray-600">Location: {{ $job['location'] }}</span>
 
                     <span class="text-blue-600 pt-2">
-                        <a href="{{ url('employer/'.$job->employer->id) }}">{{ $job->employer->name }}</a>
                     </span>
                 </div>
                 <div class="text-right">
