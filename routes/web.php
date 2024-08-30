@@ -48,8 +48,8 @@ Route::post("/jobs", function(){
 });
 
 // Edit
-Route::get("/jobs/{id}/edit", function($id){
-    $job = Job::find($id);
+Route::get("/jobs/{job}/edit", function(Job $job){
+    // $job = Job::find($job);
     if(!$job) {
         abort(404);
     }
@@ -57,13 +57,14 @@ Route::get("/jobs/{id}/edit", function($id){
 });
 
 // Update
-Route::patch("/jobs/{id}", function($id){
+Route::patch("/jobs/{job}", function(Job $job){
+
+    // $job = Job::findOrFail($job);
     request()->validate([
         'title'=> ["required", "min:3", "string"],
         'salary'=> ["required", "string"],
     ]);
 
-    $job = Job::findOrFail($id);
     $job->update([
         "title"=> request('title'),
         "salary"=> request('salary')
@@ -73,15 +74,15 @@ Route::patch("/jobs/{id}", function($id){
 });
 
 // Delete
-Route::delete("/jobs/{id}", function($id){
-    $job = Job::findOrFail($id);
+Route::delete("/jobs/{job}", function(Job $job){
+    // $job = Job::findOrFail($job);
     $job->delete();
     return redirect('/jobs');
 });
 
 // Show
-Route::get("/jobs/{id}", function($id){
-    $job = Job::find($id);
+Route::get("/jobs/{job}", function(Job $job){
+    // $job = Job::find($job);
     if(!$job) {
         abort(404);
     }
