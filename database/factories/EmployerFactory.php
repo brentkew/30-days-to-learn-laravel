@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,7 @@ class EmployerFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'user_id' => User::factory(),
             'email' => $this->faker->unique()->safeEmail(),
             'company_name' => $this->faker->company(),
             'phone' => $this->faker->phoneNumber(),
