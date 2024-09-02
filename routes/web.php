@@ -3,6 +3,7 @@
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 
@@ -37,7 +38,10 @@ Route::post('/login', [SessionController::class, 'store']);
 Route::post('/logout', [SessionController::class, 'destory']);
 
 
-
+// Route::get("test", function(){
+//     Mail::to("brentkew@gmail.com")->send(new \App\Mail\JobPosted());
+//     return "Done";
+// });
 
 
 
