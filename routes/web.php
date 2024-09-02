@@ -12,14 +12,27 @@ Route::view("/contact-us", "contact");
 
 // Route Resource
 // only=> [], except=> []
-Route::resource("jobs", JobController::class);
+// Route::resource("jobs", JobController::class)->only(['index', 'show']);
+// Route::resource("jobs", JobController::class)->except(['index', 'show'])->middleware('auth');
+
+// Display a listing of the jobs
+Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
+Route::get('/jobs/create', [JobController::class, 'create'])->name('jobs.create');
+Route::post('/jobs', [JobController::class, 'store'])->name('jobs.store')->middleware('auth');
+Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
+Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit')
+        ->middleware(['auth'])
+        ->can('edit', 'job');
+Route::patch('/jobs/{job}', [JobController::class, 'update'])->name('jobs.update');
+Route::delete('/jobs/{job}', [JobController::class, 'destroy'])->name('jobs.destroy');
+
 
 // Auth
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);
 
 
-Route::get('/login', [SessionController::class, 'create']);
+Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::post('/login', [SessionController::class, 'store']);
 Route::post('/logout', [SessionController::class, 'destory']);
 

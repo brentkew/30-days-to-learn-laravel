@@ -15,9 +15,11 @@
             <p class="text-gray-600">Posted on: {{ $job['datePosted'] }}</p>
         </div>
 
-        <div class="pt-10">
-            <x-nav-link href="/jobs/{{ $job['id'] }}/edit">Edit Job</x-nav-link>
-        </div>
+        @can('edit', $job)
+            <div class="pt-10">
+                <x-nav-link href="/jobs/{{ $job['id'] }}/edit">Edit Job</x-nav-link>
+            </div>
+        @endcan
 
         @else
             <div class="bg-white p-4 rounded-lg shadow-md">
