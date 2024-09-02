@@ -44,7 +44,12 @@ Route::post('/logout', [SessionController::class, 'destory']);
 // });
 
 
-
+// Dispatch Queue
+Route::get('/test', function(){
+    dispatch(function(){
+        logger("hello from queue");
+    })->delay(5);
+});
 
 
 
