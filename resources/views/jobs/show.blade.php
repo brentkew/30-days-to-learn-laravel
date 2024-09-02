@@ -16,7 +16,7 @@
         </div>
 
         <div class="pt-10">
-            <x-button href="/jobs/{{ $job['id'] }}/edit">Edit Job</x-button>
+            <x-nav-link href="/jobs/{{ $job['id'] }}/edit">Edit Job</x-nav-link>
         </div>
 
         @else
