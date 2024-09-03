@@ -3,7 +3,8 @@
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
-use Illuminate\Support\Facades\Mail;
+use App\Jobs\TranslateJob;
+use App\Models\Job;
 use Illuminate\Support\Facades\Route;
 
 
@@ -46,9 +47,15 @@ Route::post('/logout', [SessionController::class, 'destory']);
 
 // Dispatch Queue
 Route::get('/test', function(){
-    dispatch(function(){
-        logger("hello from queue");
-    })->delay(5);
+
+    // dispatch(function(){
+    //     logger("hello from queue");
+    // })->delay(5);
+
+    $job = Job::first();
+    TranslateJob::dispatch($job);
+    return "Done";
+
 });
 
 
